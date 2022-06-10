@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    [SerializeField] private float speed = 0.05f;
+    [SerializeField] private float speed;
     [SerializeField] private bool moveing;
     [SerializeField] private int role;
 
@@ -23,9 +23,11 @@ public class PlatformController : MonoBehaviour
     {
         if (transform.position.y>3.5f){
             moveing = false;
+            speed = Random.Range(0.02f, 0.1f);
         }
         if (transform.position.y<-4.5){
             moveing = true;
+            speed = Random.Range(0.02f, 0.1f);
         }
 
         if(moveing){
