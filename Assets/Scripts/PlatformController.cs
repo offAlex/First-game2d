@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    [SerializeField] private float speed = 0.1f;
+    [SerializeField] private float speed = 0.05f;
     [SerializeField] private bool moveing;
+    [SerializeField] private int role;
+
+    void Start(){
+        role = Random.Range(0,2);
+        Debug.Log(role);
+        if (role == 1){
+            moveing = false;
+        }
+        else {
+            moveing = true;
+        }
+    }
 
     void FixedUpdate()
     {
