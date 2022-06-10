@@ -25,7 +25,7 @@ public class PlatformController : MonoBehaviour
             moveing = false;
             speed = Random.Range(0.02f, 0.1f);
         }
-        if (transform.position.y<-4.5){
+        if (transform.position.y<-4.2){
             moveing = true;
             speed = Random.Range(0.02f, 0.1f);
         }
