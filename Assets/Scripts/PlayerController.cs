@@ -33,16 +33,25 @@ public class PlayerController : MonoBehaviour
         
         if (isGrounded && Input.GetKey(KeyCode.Space)){
             isGrounded = false;
-            _rb.AddForce(Vector2.up*powerJump);
+            _rb.AddForce(Vector2.up * powerJump);
         }
     }
 
-    //проверяем, стоит ли персонаж на земле
+    //проверяем, стоит ли персонаж на платформе
     private void OnCollisionEnter2D(Collision2D collision)
     {   
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             isGrounded = true;
+            this.transform.parent = collision.transform;
     }
+    //проверяем, прыгнул ли персонаж с платформы
+    private void OnCollisionExit2D(Collision2D collision)
+    {   
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            isGrounded = false;
+            this.transform.parent = null;
+    }
+
 
     private void Flip()
     {

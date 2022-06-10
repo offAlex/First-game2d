@@ -17,10 +17,10 @@ public class PlatformController : MonoBehaviour
         }
 
         if(moveing){
-            transform.position = new Vector2(transform.position.x,transform.position.y+speed);
+            transform.position = new Vector2(transform.position.x,transform.position.y + speed);
         }
         else{
-            transform.position = new Vector2(transform.position.x,transform.position.y-speed);
+            transform.position = new Vector2(transform.position.x,transform.position.y - speed);
         }
     }
 
