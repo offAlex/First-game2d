@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinsController : MonoBehaviour
+public class CoinsGeneration : MonoBehaviour
 {
     public Transform coins;
     [SerializeField] private int change;

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isFacingRight = true;
     [SerializeField] private float powerJump = 300f;
     [SerializeField] public bool isGrounded;
-    [SerializeField] private int money = 0;
+    [SerializeField] public static int money = 0;
      
     private Rigidbody2D _rb;
 
