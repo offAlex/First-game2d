@@ -4,28 +4,26 @@ using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour
-{
+{   
+    public Transform coins;
 
     [SerializeField] public float maxSpeed = 10f; 
     [SerializeField] private bool isFacingRight = true;
     [SerializeField] private float powerJump = 300f;
     [SerializeField] public bool isGrounded;
+    [SerializeField] private int money = 0;
      
-    private bool isDie;
     private Rigidbody2D _rb;
 
-    void Start(){
+    void Start()
+    {
         _rb = GetComponent<Rigidbody2D>();
-        isDie = false;
     }
 
 
     private void Update(){
-        if (transform.position.y>-6f){
-            isDie = false;
-        }
-        else{
-            isDie = true;
+        if (transform.position.y<-6f)
+        {
             Destroy(this.gameObject);
         }
     }
@@ -60,9 +58,10 @@ public class PlayerController : MonoBehaviour
     //проверяем, прыгнул ли персонаж с платформы
     private void OnCollisionExit2D(Collision2D collision)
     {   
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")){
             isGrounded = false;
             this.transform.parent = null;
+    }
     }
 
 
@@ -77,4 +76,12 @@ public class PlayerController : MonoBehaviour
         //задаем новый размер персонажа, равный старому, но зеркально отраженный
         transform.localScale = theScale;
     }
+
+    void OnTriggerEnter2D(Collider2D coins) 
+    {
+        money++;
+        Debug.Log("coins!!!");
+        Destroy(coins.gameObject);
+    }
+    
 }

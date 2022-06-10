@@ -8,31 +8,38 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private bool moveing;
     [SerializeField] private int role;
 
-    void Start(){
+    void Start()
+    {
         role = Random.Range(0,2);
-        if (role == 1){
+        if (role == 1)
+        {
             moveing = false;
         }
-        else {
+        else 
+        {
             moveing = true;
         }
     }
 
     void FixedUpdate()
     {
-        if (transform.position.y>3.5f){
+        if (transform.position.y>3.5f)
+        {
             moveing = false;
             speed = Random.Range(0.02f, 0.1f);
         }
-        if (transform.position.y<-4.2){
+        if (transform.position.y<-4.2)
+        {
             moveing = true;
             speed = Random.Range(0.02f, 0.1f);
         }
 
-        if(moveing){
+        if(moveing)
+        {
             transform.position = new Vector2(transform.position.x,transform.position.y + speed);
         }
-        else{
+        else
+        {
             transform.position = new Vector2(transform.position.x,transform.position.y - speed);
         }
     }
