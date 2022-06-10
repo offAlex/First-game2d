@@ -10,7 +10,6 @@ public class PlatformController : MonoBehaviour
 
     void Start(){
         role = Random.Range(0,2);
-        Debug.Log(role);
         if (role == 1){
             moveing = false;
         }

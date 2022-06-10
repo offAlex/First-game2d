@@ -9,16 +9,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float maxSpeed = 10f; 
     [SerializeField] private bool isFacingRight = true;
     [SerializeField] private float powerJump = 300f;
-    [SerializeField] public bool isGrounded = true;
-
+    [SerializeField] public bool isGrounded;
+     
+    private bool isDie;
     private Rigidbody2D _rb;
 
     void Start(){
         _rb = GetComponent<Rigidbody2D>();
+        isDie = false;
+    }
+
+
+    private void Update(){
+        if (transform.position.y>-6f){
+            isDie = false;
+        }
+        else{
+            isDie = true;
+            Destroy(this.gameObject);
+        }
     }
 
 	private void FixedUpdate()
-    {
+    {   
         float move = Input.GetAxis("Horizontal");
 
         _rb.velocity = new Vector2(move * maxSpeed, _rb.velocity.y);
