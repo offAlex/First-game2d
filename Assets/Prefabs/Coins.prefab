@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2275957946256494372}
   - component: {fileID: 3585061797733295070}
-  - component: {fileID: 2191625972528637939}
   - component: {fileID: 899555761316391689}
+  - component: {fileID: 7808661257606388804}
   m_Layer: 0
   m_Name: Coins
   m_TagString: Coins
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81ed6dd99de01c243b06c10201ba927a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &2191625972528637939
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8626930761487109813}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
 --- !u!114 &899555761316391689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,4 +96,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127fb04be2392143860f48a8eea2b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: {fileID: 2275957946256494372}
+--- !u!68 &7808661257606388804
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8626930761487109813}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.831353, y: 0.17115654}
+  - {x: 0.000013411045, y: -0.6206128}
+  - {x: -0.8246212, y: 0.17122187}
+  - {x: -0.35182396, y: 0.624247}
+  - {x: 0.3594503, y: 0.62112194}
+  - {x: 0.825, y: 0.17115654}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

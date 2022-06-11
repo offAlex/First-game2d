@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {   
     public Transform coins;
+    public Animator anim;  
 
     [SerializeField] public float maxSpeed = 10f; 
     [SerializeField] private bool isFacingRight = true;
@@ -34,14 +35,23 @@ public class PlayerController : MonoBehaviour
 
         _rb.velocity = new Vector2(move * maxSpeed, _rb.velocity.y);
 
+        if (move == 0 )
+        {
+            WalkOff();
+        }
         //если нажали клавишу для перемещения вправо, а персонаж направлен влево
-        if(move > 0 && !isFacingRight)
+        else if(move > 0 && !isFacingRight)
+        {
             //отражаем персонажа вправо
             Flip();
+            Walk();
+        }
         //обратная ситуация. отражаем персонажа влево
         else if (move < 0 && isFacingRight)
+        {
             Flip();
-        
+            Walk();
+        }
         if (isGrounded && Input.GetKey(KeyCode.Space)){
             isGrounded = false;
             _rb.AddForce(Vector2.up * powerJump);
@@ -84,4 +94,12 @@ public class PlayerController : MonoBehaviour
         Destroy(coins.gameObject);
     }
     
+    public void Walk()
+	{
+		anim.SetBool("Walk", true);
+	}
+    public void WalkOff()
+	{
+		anim.SetBool("Walk", false);
+    }
 }

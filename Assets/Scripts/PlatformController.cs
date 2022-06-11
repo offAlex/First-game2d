@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformController : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private bool moveing;
+    [SerializeField] public bool moveingUp;
     [SerializeField] private int role;
 
     void Start()
@@ -13,11 +13,11 @@ public class PlatformController : MonoBehaviour
         role = Random.Range(0,2);
         if (role == 1)
         {
-            moveing = false;
+            moveingUp = false;
         }
         else 
         {
-            moveing = true;
+            moveingUp = true;
         }
     }
 
@@ -25,16 +25,16 @@ public class PlatformController : MonoBehaviour
     {
         if (transform.position.y>3.5f)
         {
-            moveing = false;
+            moveingUp = false;
             speed = Random.Range(0.02f, 0.1f);
         }
-        if (transform.position.y<-4.2)
+        if (transform.position.y<-4.5)
         {
-            moveing = true;
+            moveingUp = true;
             speed = Random.Range(0.02f, 0.1f);
         }
 
-        if(moveing)
+        if(moveingUp)
         {
             transform.position = new Vector2(transform.position.x,transform.position.y + speed);
         }
