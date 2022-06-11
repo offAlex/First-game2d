@@ -6,10 +6,27 @@ using UnityEngine.UI;
 public class CoinText : MonoBehaviour
 {   
     [SerializeField] public Text textCoins;
+    [SerializeField] public Text textRecords;
+    [SerializeField] public int score;
+    [SerializeField] public int coins;
 
-    // Update is called once per frame
+    void Start()
+    {      
+        //PlayerPrefs.DeleteAll();  for delele records
+    }
+
     void Update()
     {   
-        textCoins.text =""+ PlayerController.money;
+        coins = PlayerController.money;
+        textCoins.text = "" + coins;
+        if (coins>score)
+        {   score = coins;
+            PlayerPrefs.SetInt("saveScore", score);
+            PlayerPrefs.Save();
+            textRecords.text = "" + PlayerController.money;
+            
+        }
+        score = PlayerPrefs.GetInt("saveScore", score);
+        textRecords.text = "" + score;
     }
 }
