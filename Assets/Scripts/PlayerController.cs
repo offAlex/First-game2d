@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float powerJump = 300f;
     [SerializeField] public bool isGrounded;
     [SerializeField] public static int money = 0;
+    [SerializeField] public AudioSource moneySoung;
+    [SerializeField] public AudioSource dieSoung;
+
      
     private Rigidbody2D _rb;
 
@@ -25,7 +28,8 @@ public class PlayerController : MonoBehaviour
     private void Update(){
         if (transform.position.y<-6f)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(Die());
+            enabled = false;       
         }
     }
 
@@ -92,6 +96,7 @@ public class PlayerController : MonoBehaviour
         money++;
         Debug.Log("coins!!!");
         Destroy(coins.gameObject);
+        moneySoung.Play();
     }
     
     public void Walk()
@@ -101,5 +106,12 @@ public class PlayerController : MonoBehaviour
     public void WalkOff()
 	{
 		anim.SetBool("Walk", false);
+    }
+
+    IEnumerator Die()
+    {   
+        dieSoung.Play();
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 }
