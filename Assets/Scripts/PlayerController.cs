@@ -13,14 +13,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isFacingRight = true;
     [SerializeField] private float powerJump = 300f;
     [SerializeField] public bool isGrounded;
-    [SerializeField] public static int money = 0;
+    [SerializeField] public static int money;
     [SerializeField] public AudioSource moneySoung;
     [SerializeField] public AudioSource dieSoung;
 
     private Rigidbody2D _rb;
 
     void Start()
-    {
+    {   money = 0;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -43,14 +43,11 @@ public class PlayerController : MonoBehaviour
         {
             WalkOff();
         }
-        //если нажали клавишу для перемещения вправо, а персонаж направлен влево
         else if(move > 0 && !isFacingRight)
         {
-            //отражаем персонажа вправо
             Flip();
             Walk();
         }
-        //обратная ситуация. отражаем персонажа влево
         else if (move < 0 && isFacingRight)
         {
             Flip();
@@ -62,14 +59,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //проверяем, стоит ли персонаж на платформе
     private void OnCollisionEnter2D(Collision2D collision)
     {   
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             isGrounded = true;
             this.transform.parent = collision.transform;
     }
-    //проверяем, прыгнул ли персонаж с платформы
     private void OnCollisionExit2D(Collision2D collision)
     {   
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")){
@@ -81,13 +76,9 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        //меняем направление движения персонажа
         isFacingRight = !isFacingRight;
-        //получаем размеры персонажа
         Vector3 theScale = transform.localScale;
-        //зеркально отражаем персонажа по оси Х
         theScale.x *= -1;
-        //задаем новый размер персонажа, равный старому, но зеркально отраженный
         transform.localScale = theScale;
     }
 
@@ -96,7 +87,6 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("Coins"))
         {
             money++;
-            Debug.Log("coins!!!");
             Destroy(other.gameObject);
             moneySoung.Play();
         }
