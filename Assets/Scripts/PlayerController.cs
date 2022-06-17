@@ -91,12 +91,20 @@ public class PlayerController : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    void OnTriggerEnter2D(Collider2D coins) 
+    void OnTriggerEnter2D(Collider2D other) 
     {
-        money++;
-        Debug.Log("coins!!!");
-        Destroy(coins.gameObject);
-        moneySoung.Play();
+        if(other.CompareTag("Coins"))
+        {
+            money++;
+            Debug.Log("coins!!!");
+            Destroy(other.gameObject);
+            moneySoung.Play();
+        }
+        if(other.CompareTag("Weapon"))
+        {
+            Destroy(this.gameObject);
+        }
+
     }
     
     public void Walk()
