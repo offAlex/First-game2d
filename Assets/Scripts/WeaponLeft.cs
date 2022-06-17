@@ -7,14 +7,18 @@ public class WeaponLeft : MonoBehaviour
     [SerializeField] private float speedTransform = 3f;
     [SerializeField] private float speedRotate= 2f;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        transform.Rotate(0, speedRotate * Time.deltaTime, 0);
-        transform.Translate(Vector2.right * speedTransform * Time.deltaTime);
-        if (transform.position.y>10)
+        if (transform.position.x>10f)
         {
             Destroy(this.gameObject);
         }
+    }
+
+
+    void FixedUpdate()
+    {
+        transform.Rotate(new Vector3(0, 0, speedRotate * Time.deltaTime));
+        transform.Translate(Vector2.right * speedTransform * Time.deltaTime);
     }
 }

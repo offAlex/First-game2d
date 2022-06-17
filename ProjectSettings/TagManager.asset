@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grounded
   - Coins
+  - Weapon
   layers:
   - Default
   - TransparentFX
