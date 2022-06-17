@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {   
     public Transform coins;
-    public Animator anim;  
+    public Animator anim; 
+    public GameObject button;
 
     [SerializeField] public float maxSpeed = 10f; 
     [SerializeField] private bool isFacingRight = true;
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public AudioSource moneySoung;
     [SerializeField] public AudioSource dieSoung;
 
-     
     private Rigidbody2D _rb;
 
     void Start()
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     private void Update(){
         if (transform.position.y<-6f)
         {
-            StartCoroutine(Die());
-            enabled = false;       
+            enabled = false;
+            StartCoroutine(Die());       
         }
     }
 
@@ -101,8 +101,9 @@ public class PlayerController : MonoBehaviour
             moneySoung.Play();
         }
         if(other.CompareTag("Weapon"))
-        {
-            Destroy(this.gameObject);
+        {   
+            enabled = false;
+            StartCoroutine(Die());
         }
 
     }
@@ -119,6 +120,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Die()
     {   
         dieSoung.Play();
+        button.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
     }
