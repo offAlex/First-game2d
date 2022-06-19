@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
 {   
     public Transform coins;
     public Animator anim; 
-    public GameObject button;
+    public GameObject buttonRestart;
+    public GameObject buttonJump;
+    public FixedJoystick fixedJoystick;
 
     [SerializeField] public float maxSpeed = 10f; 
     [SerializeField] private bool isFacingRight = true;
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
     {   
-        float move = Input.GetAxis("Horizontal");
+        float move = fixedJoystick.Horizontal;
 
         _rb.velocity = new Vector2(move * maxSpeed, _rb.velocity.y);
 
@@ -53,7 +55,11 @@ public class PlayerController : MonoBehaviour
             Flip();
             Walk();
         }
-        if (isGrounded && Input.GetKey(KeyCode.Space)){
+    }
+
+
+    public void Jump(){
+        if (isGrounded){
             isGrounded = false;
             _rb.AddForce(Vector2.up * powerJump);
         }
@@ -110,7 +116,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Die()
     {   
         dieSoung.Play();
-        button.gameObject.SetActive(true);
+        buttonRestart.gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
     }
